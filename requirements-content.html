@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
+        <h1 class="main-title mb-4 md:mb-0">요구사항 관리</h1>
+        <button id="new-requirement-btn" class="new-project-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all">
+            + New Requirement
+        </button>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-blue-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">요구사항</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">프로젝트</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">우선순위</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작업</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200" id="requirements-table-body">
+                <!-- 더미 데이터 -->
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">REQ-001</td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">사용자 로그인 및 인증 시스템</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">프로젝트 A</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-medium">높음</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <span class="status-progress">검토 중</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">REQ-002</td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">대시보드 데이터 시각화</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">프로젝트 A</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-yellow-500 font-medium">중간</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <span class="status-completed">승인됨</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">REQ-003</td>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">다크 모드 지원</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">프로젝트 B</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-500 font-medium">낮음</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <span class="status-planned">신규</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button class="text-blue-600 hover:text-blue-800 mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 모달 -->
+    <div id="requirement-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-xl font-semibold mb-4" id="modal-title">요구사항 추가</h2>
+            <form id="requirement-form">
+                <input type="hidden" id="edit-mode" value="false">
+                <input type="hidden" id="original-id" value="">
+                
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">요구사항 이름</label>
+                    <input type="text" id="name" name="name" class="w-full border border-gray-300 p-2 rounded-md focus:border-blue-600 focus:outline-none" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="project" class="block text-sm font-medium text-gray-700 mb-1">프로젝트</label>
+                    <select id="project" name="project" class="w-full border border-gray-300 p-2 rounded-md focus:border-blue-600 focus:outline-none" required>
+                        <!-- 프로젝트 목록이 여기에 동적으로 로드됨 -->
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="priority" class="block text-sm font-medium text-gray-700 mb-1">우선순위</label>
+                    <select id="priority" name="priority" class="w-full border border-gray-300 p-2 rounded-md focus:border-blue-600 focus:outline-none" required>
+                        <option value="높음">높음</option>
+                        <option value="중간">중간</option>
+                        <option value="낮음">낮음</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="status" class="block text-sm font-medium text-gray-700 mb-1">상태</label>
+                    <select id="status" name="status" class="w-full border border-gray-300 p-2 rounded-md focus:border-blue-600 focus:outline-none" required>
+                        <option value="신규">신규</option>
+                        <option value="검토 중">검토 중</option>
+                        <option value="승인됨">승인됨</option>
+                        <option value="반려됨">반려됨</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">설명</label>
+                    <textarea id="description" name="description" rows="3" class="w-full border border-gray-300 p-2 rounded-md focus:border-blue-600 focus:outline-none"></textarea>
+                </div>
+                
+                <div class="flex justify-end gap-2">
+                    <button type="button" id="cancel-btn" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-all">취소</button>
+                    <button type="submit" id="submit-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">추가</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 페이지 초기화 및 스크립트 로드
+            // 이 코드는 script.js의 loadPageScript 함수에 의해 자동으로 만들어진 JS 파일을 로드하기 위한 부분입니다.
+            console.log('요구사항 관리 페이지 로드 완료');
+        });
+    </script>
+</body>
+</html>
